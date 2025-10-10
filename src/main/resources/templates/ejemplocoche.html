@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Coche</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="form-coche-container">
+        <h2><i class="fa-solid fa-car-side"></i> Añadir Coche</h2>
+        <form class="form-coche" th:object="${coche}" method="post" th:action="@{/ejemplocoche/aniadircoche}">
+            <label for="matricula"><i class="fa-solid fa-id-card"></i> Matrícula</label>
+            <input type="text" id="matricula" th:field="*{matricula}" placeholder="Ej: 1234-ABC" required />
+
+            <label for="marca"><i class="fa-solid fa-flag"></i> Marca</label>
+            <input type="text" id="marca" th:field="*{marca}" placeholder="Ej: Toyota" required />
+
+            <label for="modelo"><i class="fa-solid fa-car"></i> Modelo</label>
+            <input type="text" id="modelo" th:field="*{modelo}" placeholder="Ej: Corolla" required />
+
+            <label for="ano"><i class="fa-solid fa-calendar"></i> Año</label>
+            <input type="date" id="ano" th:field="*{ano}" required />
+
+            <button type="submit" class="btn-aceptar">🚗 Aceptar</button>
+	            <a th:href="@{/ejemplocoche/listacoches}" class="btn-cancelar">❌ Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

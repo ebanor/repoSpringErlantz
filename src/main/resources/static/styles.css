@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #ff512f 0%, #dd2476 50%, #1e1e60 100%);
+    color: #231942;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Fondo animado */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.16;
+    pointer-events: none;
+}
+body::before {
+    width: 420px;
+    height: 420px;
+    left: -180px;
+    top: -120px;
+    background: radial-gradient(circle, #ff512f 0%, transparent 70%);
+    animation: float1 10s ease-in-out infinite alternate;
+}
+body::after {
+    width: 340px;
+    height: 340px;
+    right: -120px;
+    bottom: -100px;
+    background: radial-gradient(circle, #dd2476 0%, transparent 70%);
+    animation: float2 12s ease-in-out infinite alternate;
+}
+@keyframes float1 {
+    0% { transform: translateY(0) scale(1);}
+    100% { transform: translateY(30px) scale(1.08);}
+}
+@keyframes float2 {
+    0% { transform: translateY(0) scale(1);}
+    100% { transform: translateY(-30px) scale(1.05);}
+}
+
+.form-coche-container {
+    background: rgba(255,255,255,0.97);
+    padding: 48px 36px 36px 36px;
+    border-radius: 22px;
+    box-shadow: 0 12px 48px 0 rgba(221, 36, 118, 0.18), 0 1.5px 8px #ff512f22;
+    max-width: 440px;
+    width: 100%;
+    margin: 48px 0;
+    transition: box-shadow 0.2s;
+    animation: fadeInUp 1.2s cubic-bezier(.23,1.02,.32,1) both;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.form-coche-container h2 {
+    color: #dd2476;
+    font-size: 2.2em;
+    margin-bottom: 1.3em;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 800;
+    text-shadow: 0 2px 12px #ff512f33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background: linear-gradient(90deg, #fff 60%, #ffe5ec 100%);
+    border-radius: 12px;
+    padding: 12px 0 12px 0;
+    box-shadow: 0 2px 12px #ff512f11;
+}
+
+.form-coche {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.form-coche label {
+    width: 100%;
+    justify-content: flex-start;
+    font-weight: 600;
+    color: #ff512f;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+    font-size: 1.13em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+}
+
+.form-coche input[type="text"],
+.form-coche input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    display: block;
+    padding: 15px 16px;
+    border: 2px solid #ffd6e0;
+    border-radius: 10px;
+    font-size: 1.12em;
+    transition: border 0.2s, background 0.2s, box-shadow 0.2s;
+    background: #fff0f6;
+    color: #231942;
+    margin-bottom: 0;
+    box-shadow: 0 2px 12px #ff512f11;
+    outline: none;
+}
+
+.form-coche input[type="text"]:focus,
+.form-coche input[type="date"]:focus {
+    border-color: #dd2476;
+    background: #ffe5ec;
+    box-shadow: 0 0 0 3px #ff512f33, 0 2px 12px #dd247622;
+}
+
+.form-coche input[type="text"]:hover,
+.form-coche input[type="date"]:hover {
+    border-color: #ff512f;
+}
+
+.form-coche input[type="text"]::placeholder,
+.form-coche input[type="date"]::placeholder {
+    color: #dd247699;
+    opacity: 1;
+    font-style: italic;
+}
+
+.form-coche input[type="submit"] {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: #fff;
+    border: none;
+    padding: 17px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.18em;
+    font-weight: 700;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    box-shadow: 0 4px 24px #dd247622;
+    margin-top: 12px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #23194222;
+}
+
+.form-coche input[type="submit"]:hover,
+.form-coche input[type="submit"]:focus-visible {
+    background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+    box-shadow: 0 8px 32px #ff512f33;
+    transform: translateY(-2px) scale(1.04);
+    outline: 2px solid #dd2476;
+    outline-offset: 2px;
+}
+
+/* Botón principal más grande y vistoso */
+.btn-aceptar {
+    width: 100%;
+    padding: 20px 0;
+    margin-top: 10px;
+    font-size: 1.25em;
+    font-weight: 800;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: #fff;
+    box-shadow: 0 6px 24px #dd247633;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-shadow: 0 2px 8px #23194222;
+    display: block;
+}
+
+.btn-aceptar:hover, .btn-aceptar:focus-visible {
+    background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 32px #ff512f44;
+    outline: 2px solid #dd2476;
+    outline-offset: 2px;
+}
+
+/* Botón secundario para volver/crear otro */
+.btn-volver {
+    display: block;
+    width: 100%;
+    margin: 18px auto 0 auto;
+    padding: 15px 0;
+    font-size: 1.08em;
+    font-weight: 700;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #fff0f6 0%, #ffe5ec 100%);
+    color: #dd2476;
+    border: 2px solid #dd2476;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 12px #ff512f11;
+    transition: background 0.2s, color 0.2s, border 0.2s, transform 0.15s;
+    letter-spacing: 1px;
+}
+
+.btn-volver:hover, .btn-volver:focus-visible {
+    background: linear-gradient(90deg, #ff512f22 0%, #dd247622 100%);
+    color: #ff512f;
+    border: 2px solid #ff512f;
+    transform: scale(1.03);
+    outline: none;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .form-coche-container {
+        padding: 16px 2px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+    .form-coche input[type="submit"] {
+        padding: 12px 0;
+        font-size: 1em;
+    }
+    .form-coche label {
+        font-size: 1em;
+    }
+    .form-coche-container h2 {
+        font-size: 1.3em;
+        gap: 8px;
+        padding: 8px 0;
+    }
+}

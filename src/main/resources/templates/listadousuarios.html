@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Listado Usuarios</title>
+<link rel="stylesheet" href="/styles/estiloguapo.css">
+</head>
+<body>
+
+<h1>Gestión de Usuarios</h1>
+
+<h2>Añadir Nuevo Usuario</h2>
+<form th:object="${usuario}" method="post" action="#"
+th:action="@{/usuarios/aniadirusuario}">
+
+<p>NOMBRE: <input type="text" th:field="*{nombre}"/></p>
+<p>CORREO: <input type="email" th:field="*{correo}"/></p>
+<p>CONTRASEÑA: <input type="password" th:field="*{contraseña}"/></p>
+<p>ÚLTIMO INICIO: <input type="datetime-local" th:field="*{ultimoInicio}"/></p>
+
+<p><input type="submit" value="Añadir Usuario"/></p>
+</form>
+
+<h2>Listado de Usuarios</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Correo</th>
+<th>Fecha de Alta</th>
+<th>Estado</th>
+<th>Último Inicio</th>
+<th>Rol</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="usuario : ${usuarios}">
+<td th:text="${usuario.id}"></td>
+<td th:text="${usuario.nombre}"></td>
+<td th:text="${usuario.correo}"></td>
+<td th:text="${#temporals.format(usuario.fechaDeAlta, 'dd/MM/yyyy HH:mm')}"></td>
+<td th:text="${usuario.estado ? 'Activo' : 'Inactivo'}"></td>
+<td th:text="${#temporals.format(usuario.ultimoInicio, 'dd/MM/yyyy HH:mm')}"></td>
+<td th:text="${usuario.rol != null ? usuario.rol.nombreRol : 'Sin rol'}"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
