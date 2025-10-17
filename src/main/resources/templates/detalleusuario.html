@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Usuario</title>
+    <link id="estilo" rel="stylesheet" href="">
+    <script>
+        var currentStyle = localStorage.getItem('currentStyle');
+        var estilo = document.getElementById('estilo');
+        if (currentStyle === 'ac') {
+            estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+        } else {
+            estilo.setAttribute('href', '/styles/estiloguapo.css');
+        }
+    </script>
+</head>
+<body>
+    <button onclick="toggleEstilo()" class="style-toggle-button">Cambiar Estilo</button>
+
+    <script>
+        function toggleEstilo() {
+            var estilo = document.getElementById('estilo');
+            if (estilo.getAttribute('href') === '/styles/estiloguapo.css') {
+                estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+                localStorage.setItem('currentStyle', 'ac');
+            } else {
+                estilo.setAttribute('href', '/styles/estiloguapo.css');
+                localStorage.setItem('currentStyle', 'normal');
+            }
+        }
+    </script>
+
+    <h1>Detalle de Usuario</h1>
+
+    <div th:if="${usuario != null}" class="user-detail-card">
+        <h2>Información del Usuario</h2>
+
+        <div th:if="${!editMode}" class="user-info">
+            <div class="info-row">
+                <strong>ID:</strong> <span th:text="${usuario.id}"></span>
+            </div>
+            <div class="info-row">
+                <strong>DNI:</strong> <span th:text="${usuario.dni}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Nombre:</strong> <span th:text="${usuario.nombre}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Correo:</strong> <span th:text="${usuario.correo}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Fecha de Alta:</strong> <span th:text="${#temporals.format(usuario.fechaDeAlta, 'dd/MM/yyyy HH:mm')}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Estado:</strong> <span th:text="${usuario.estado ? 'Activo' : 'Inactivo'}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Último Inicio:</strong> <span th:text="${#temporals.format(usuario.ultimoInicio, 'dd/MM/yyyy HH:mm')}"></span>
+            </div>
+            <div class="info-row">
+                <strong>Rol:</strong>
+                <span class="role-display">
+                    <span th:text="${usuario.rol != null ? usuario.rol.nombreRol : 'Sin rol'}"></span>
+                    <img th:if="${usuario.rol != null}" th:src="'/img/' + ${usuario.rol.nombreRol} + '.ico'" alt="${usuario.rol.nombreRol}" class="role-icon" th:data-description="${usuario.rol.descripcionRol}" onclick="showRoleDescription(this.getAttribute('data-description'))"/>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="role-description" style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgba(0, 0, 0, 0.8); color: white; padding: 20px; text-align: center;">
+        <span id="role-description-text"></span>
+    </div>
+
+    <script>
+        function showRoleDescription(description) {
+            document.getElementById('role-description-text').innerText = description;
+            document.getElementById('role-description').style.display = 'block';
+        }
+    </script>
+
+
+    <div th:if="${usuario == null}" class="user-detail-card error-card">
+        <p>Usuario no encontrado.</p>
+    </div>
+
+    <div class="back-link">
+        <button th:if="${!editMode}" th:data-dni="${usuario.dni}" onclick="window.location.href='/miERP/detalle?DNI=' + this.getAttribute('data-dni') + '&edit=true'" class="edit-button">Modificar</button>
+        <button onclick="window.location.href='/usuarios/listar'" class="back-button">Volver al listado</button>
+    </div>
+
+</body>
+
+</html>

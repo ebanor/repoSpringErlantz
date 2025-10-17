@@ -1,0 +1,429 @@
+/* Estilos generales para el cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos para los encabezados */
+h1 {
+    color: #ff0;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: slideInFromTop 1s ease-out;
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h2 {
+    color: #ff0;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Estilos para el formulario */
+form {
+    background: linear-gradient(145deg, #333333, #444444);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    border: 2px solid #666;
+    animation: slideInFromBottom 1s ease-out 0.5s both;
+}
+
+@keyframes slideInFromBottom {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+form p {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="datetime-local"],
+form select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #999;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #666;
+    color: #fff;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="datetime-local"]:focus,
+form select:focus {
+    border-color: #ff0;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+    outline: none;
+    background-color: #777;
+}
+
+form input[type="submit"] {
+    background: linear-gradient(45deg, #ff0, #ffff99);
+    color: #000;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 0, 0.4);
+}
+
+form input[type="submit"]:hover {
+    background: linear-gradient(45deg, #ffff99, #ff0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 0, 0.6);
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    background: linear-gradient(145deg, #333333, #444444);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    overflow: hidden;
+    animation: slideInFromBottom 1s ease-out 1s both;
+}
+
+thead {
+    background: linear-gradient(45deg, #ff0, #ffff99);
+    color: #000;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #666;
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background: linear-gradient(90deg, #555555, #666666);
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #444;
+}
+
+tbody tr:nth-child(even):hover {
+    background: linear-gradient(90deg, #555555, #666666);
+}
+
+/* Estilos para enlaces */
+a {
+    color: #ff0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffff99;
+    text-decoration: underline;
+}
+
+/* Estilos para el botón de cambio de estilo */
+.style-toggle-button {
+    background: #ffffff;
+    color: #000;
+    padding: 12px 25px;
+    border: 2px solid #ff0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.style-toggle-button:hover {
+    background: #ff0;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 0, 0.4);
+}
+
+/* Estilos para la página de detalle de usuario */
+.user-detail-card {
+    background: linear-gradient(145deg, #333333, #444444);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 2px solid #666;
+    animation: slideInFromBottom 1s ease-out 0.5s both;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user-detail-card h2 {
+    color: #ff0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #666;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row label {
+    color: #fff;
+    font-weight: bold;
+    min-width: 120px;
+    display: block;
+}
+
+.info-row span {
+    color: #fff;
+    text-align: right;
+    flex: 1;
+}
+
+.info-row input,
+.info-row select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #666;
+    color: #fff;
+}
+
+.role-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.role-display {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.error-card {
+    background: linear-gradient(145deg, #660000, #990000);
+    border-color: #ff6666;
+}
+
+.error-card p {
+    color: #ffcccc;
+    text-align: center;
+    font-weight: bold;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button {
+    background: #ffffff;
+    color: #000;
+    padding: 12px 25px;
+    border: 2px solid #ff0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 0, 0.2);
+}
+
+.back-button:hover {
+    background: #ff0;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 0, 0.4);
+}
+
+.edit-button {
+    background: #ffff99;
+    color: #000;
+    padding: 12px 25px;
+    border: 2px solid #ffff99;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 153, 0.2);
+    margin-right: 10px;
+}
+
+.edit-button:hover {
+    background: #ff0;
+    border-color: #ff0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 153, 0.4);
+}
+
+.cancel-button {
+    background: #ff6666;
+    color: #000;
+    padding: 12px 25px;
+    border: 2px solid #ff6666;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 102, 0.2);
+    margin-left: 10px;
+}
+
+.cancel-button:hover {
+    background: #ff3333;
+    border-color: #ff3333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 102, 0.4);
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-form .user-info {
+    margin-bottom: 20px;
+}
+
+.edit-form .form-actions {
+    margin-top: 20px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .user-detail-card {
+        padding: 20px;
+        margin: 10px;
+        max-width: none;
+    }
+
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .info-row strong {
+        min-width: auto;
+    }
+
+    .info-row span {
+        text-align: left;
+    }
+
+    .role-display {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .back-link {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .edit-button, .back-button {
+        margin: 0;
+    }
+}

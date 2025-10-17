@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link id="estilo" rel="stylesheet" href="">
+    <script>
+        var currentStyle = localStorage.getItem('currentStyle');
+        var estilo = document.getElementById('estilo');
+        if (currentStyle === 'ac') {
+            estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+        } else {
+            estilo.setAttribute('href', '/styles/estiloguapo.css');
+        }
+    </script>
+</head>
+<body>
+    <button onclick="toggleEstilo()" class="style-toggle-button">Cambiar Estilo</button>
+
+    <script>
+        function toggleEstilo() {
+            var estilo = document.getElementById('estilo');
+            if (estilo.getAttribute('href') === '/styles/estiloguapo.css') {
+                estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+                localStorage.setItem('currentStyle', 'ac');
+            } else {
+                estilo.setAttribute('href', '/styles/estiloguapo.css');
+                localStorage.setItem('currentStyle', 'normal');
+            }
+        }
+    </script>
+
+    <h1>Editar Usuario</h1>
+
+    <div th:if="${usuario != null}" class="user-detail-card">
+        <h2>Editar Información del Usuario</h2>
+        <form th:object="${usuario}" method="post" th:action="@{/miERP/detalle}" class="edit-form">
+            <input type="hidden" name="DNI" th:value="${usuario.dni}" />
+            <div class="user-info">
+                <div class="info-row">
+                    <label for="id">ID:</label>
+                    <span th:text="${usuario.id}" id="id"></span>
+                </div>
+                <div class="info-row">
+                    <label for="dni">DNI:</label>
+                    <span th:text="${usuario.dni}" id="dni"></span>
+                </div>
+                <div class="info-row">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" th:field="*{nombre}" id="nombre" required />
+                </div>
+                <div class="info-row">
+                    <label for="correo">Correo:</label>
+                    <input type="email" th:field="*{correo}" id="correo" required />
+                </div>
+                <div class="info-row">
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" th:field="*{contraseña}" id="contraseña" required />
+                </div>
+                <div class="info-row">
+                    <label for="rol">Rol:</label>
+                    <select th:field="*{rol.id}" id="rol" required>
+                        <option value="">Seleccione un rol</option>
+                        <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombreRol}"></option>
+                    </select>
+                </div>
+                <div class="info-row">
+                    <label for="fechaAlta">Fecha de Alta:</label>
+                    <span th:text="${#temporals.format(usuario.fechaDeAlta, 'dd/MM/yyyy HH:mm')}" id="fechaAlta"></span>
+                </div>
+                <div class="info-row">
+                    <label for="estado">Estado:</label>
+                    <span th:text="${usuario.estado ? 'Activo' : 'Inactivo'}" id="estado"></span>
+                </div>
+                <div class="info-row">
+                    <label for="ultimoInicio">Último Inicio:</label>
+                    <span th:text="${#temporals.format(usuario.ultimoInicio, 'dd/MM/yyyy HH:mm')}" id="ultimoInicio"></span>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="submit" value="Aceptar" class="submit-button" />
+                <button type="button" th:data-dni="${usuario.dni}" onclick="window.location.href='/miERP/detalle?DNI=' + this.getAttribute('data-dni')" class="cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${usuario == null}" class="user-detail-card error-card">
+        <p>Usuario no encontrado.</p>
+    </div>
+
+</body>
+
+</html>
