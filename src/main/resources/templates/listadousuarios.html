@@ -1,50 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Listado Usuarios</title>
-<link rel="stylesheet" href="/styles/estiloguapo.css">
+    <meta charset="UTF-8">
+    <title>Listado Usuarios</title>
+    <link id="estilo" rel="stylesheet" href="/styles/estiloguapo.css">
 </head>
 <body>
+    <button onclick="toggleEstilo()" class="style-toggle-button">Cambiar Estilo</button>
 
-<h1>Gestión de Usuarios</h1>
+    <script>
+        function toggleEstilo() {
+            var estilo = document.getElementById('estilo');
+            if (estilo.getAttribute('href') === '/styles/estiloguapo.css') {
+                estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+            } else {
+                estilo.setAttribute('href', '/styles/estiloguapo.css');
+            }
+        }
+    </script>
 
-<h2>Añadir Nuevo Usuario</h2>
-<form th:object="${usuario}" method="post" action="#"
-th:action="@{/usuarios/aniadirusuario}">
 
-<p>NOMBRE: <input type="text" th:field="*{nombre}"/></p>
-<p>CORREO: <input type="email" th:field="*{correo}"/></p>
-<p>CONTRASEÑA: <input type="password" th:field="*{contraseña}"/></p>
-<p>ÚLTIMO INICIO: <input type="datetime-local" th:field="*{ultimoInicio}"/></p>
+    <h1>Gestión de Usuarios</h1>
 
-<p><input type="submit" value="Añadir Usuario"/></p>
-</form>
+    <h2>Añadir Nuevo Usuario</h2>
+    <form th:object="${usuario}" method="post" action="#" th:action="@{/usuarios/aniadirusuario}">
 
-<h2>Listado de Usuarios</h2>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Nombre</th>
-<th>Correo</th>
-<th>Fecha de Alta</th>
-<th>Estado</th>
-<th>Último Inicio</th>
-<th>Rol</th>
-</tr>
-</thead>
-<tbody>
-<tr th:each="usuario : ${usuarios}">
-<td th:text="${usuario.id}"></td>
-<td th:text="${usuario.nombre}"></td>
-<td th:text="${usuario.correo}"></td>
-<td th:text="${#temporals.format(usuario.fechaDeAlta, 'dd/MM/yyyy HH:mm')}"></td>
-<td th:text="${usuario.estado ? 'Activo' : 'Inactivo'}"></td>
-<td th:text="${#temporals.format(usuario.ultimoInicio, 'dd/MM/yyyy HH:mm')}"></td>
-<td th:text="${usuario.rol != null ? usuario.rol.nombreRol : 'Sin rol'}"></td>
-</tr>
-</tbody>
-</table>
+        <p>DNI: <input type="text" th:field="*{dni}" required /></p>
+        <p>NOMBRE: <input type="text" th:field="*{nombre}" required /></p>
+        <p>CORREO: <input type="email" th:field="*{correo}" required /></p>
+        <p>CONTRASEÑA: <input type="password" th:field="*{contraseña}" required /></p>
+        <p>ROL:
+            <select th:field="*{rol.id}" required>
+                <option value="">Seleccione un rol</option>
+                <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombreRol}"></option>
+            </select>
+        </p>
+
+        <p><input type="submit" value="Añadir Usuario" /></p>
+    </form>
+
+    <h2>Listado de Usuarios</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Fecha de Alta</th>
+                <th>Estado</th>
+                <th>Último Inicio</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${usuarios}">
+                <td th:text="${usuario.id}"></td>
+                <td th:text="${usuario.dni}"></td>
+                <td><a th:href="'/miERP/detalle?DNI=' + ${usuario.dni}" th:text="${usuario.nombre}"></a></td>
+                <td th:text="${usuario.correo}"></td>
+                <td th:text="${#temporals.format(usuario.fechaDeAlta, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${usuario.estado ? 'Activo' : 'Inactivo'}"></td>
+                <td th:text="${#temporals.format(usuario.ultimoInicio, 'dd/MM/yyyy HH:mm')}"></td>
+                <td>
+                    <img th:if="${usuario.rol != null}" th:src="'/img/' + ${usuario.rol.nombreRol} + '.ico'" alt="${usuario.rol.nombreRol}" style="width:20px; height:20px; margin-right:5px;" />
+                    <span th:text="${usuario.rol != null ? usuario.rol.nombreRol : 'Sin rol'}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+
 </html>

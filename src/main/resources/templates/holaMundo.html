@@ -2,8 +2,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HolaMundo</title>
+	<link id="estilo" rel="stylesheet" href="">
+	<script>
+		var currentStyle = localStorage.getItem('currentStyle');
+		var estilo = document.getElementById('estilo');
+		if (currentStyle === 'ac') {
+			estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+		} else {
+			estilo.setAttribute('href', '/styles/estiloguapo.css');
+		}
+	</script>
 </head>
 <body>
+	<button onclick="toggleEstilo()" class="style-toggle-button">Cambiar Estilo</button>
+
+	<script>
+		function toggleEstilo() {
+			var estilo = document.getElementById('estilo');
+			if (estilo.getAttribute('href') === '/styles/estiloguapo.css') {
+				estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+				localStorage.setItem('currentStyle', 'ac');
+			} else {
+				estilo.setAttribute('href', '/styles/estiloguapo.css');
+				localStorage.setItem('currentStyle', 'normal');
+			}
+		}
+	</script>
+
 	<h1>Hola mundo desde spring!</h1>
 	<img src="/gatitos.jpg">
 </body>

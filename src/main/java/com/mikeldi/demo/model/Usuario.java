@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Usuario {
     private int id;
+    private String dni;
     private String nombre;
     private String correo;
     private String contraseña;
@@ -12,17 +13,21 @@ public class Usuario {
     private java.time.LocalDateTime ultimoInicio;
     private Rol rol;
 
-    public Usuario() {}
+    public Usuario() {
+        this.rol = new Rol();
+    }
 
-    public Usuario(int id, String nombre, String correo, String contraseña, LocalDateTime fechaDeAlta, boolean estado, LocalDateTime ultimoInicio) {
+    public Usuario(int id, String dni, String nombre, String correo, String contraseña, LocalDateTime fechaDeAlta, boolean estado, LocalDateTime ultimoInicio) {
         super();
         this.id = id;
+        this.dni = dni;
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
         this.fechaDeAlta = fechaDeAlta;
         this.estado = estado;
         this.ultimoInicio = ultimoInicio;
+        this.rol = new Rol();
     }
 
     public int getId() {
@@ -87,5 +92,13 @@ public class Usuario {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }
