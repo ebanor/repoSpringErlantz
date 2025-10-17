@@ -167,6 +167,9 @@ a:hover {
 
 /* Estilos para el botón de cambio de estilo */
 .style-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background: #ffffff;
     color: #667eea;
     padding: 12px 25px;
@@ -177,7 +180,7 @@ a:hover {
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-    margin-bottom: 20px;
+    z-index: 1000;
 }
 
 .style-toggle-button:hover {

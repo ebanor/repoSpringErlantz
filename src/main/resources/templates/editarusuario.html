@@ -5,28 +5,35 @@
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
     <link id="estilo" rel="stylesheet" href="">
+</head>
+<body>
+    <button onclick="toggleEstilo()" class="style-toggle-button">
+        <span id="style-icon"></span> Cambiar Estilo
+    </button>
+
     <script>
         var currentStyle = localStorage.getItem('currentStyle');
         var estilo = document.getElementById('estilo');
+        var icon = document.getElementById('style-icon');
         if (currentStyle === 'ac') {
             estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
+            icon.textContent = '☀️';
         } else {
             estilo.setAttribute('href', '/styles/estiloguapo.css');
+            icon.textContent = '🌙';
         }
-    </script>
-</head>
-<body>
-    <button onclick="toggleEstilo()" class="style-toggle-button">Cambiar Estilo</button>
 
-    <script>
         function toggleEstilo() {
             var estilo = document.getElementById('estilo');
+            var icon = document.getElementById('style-icon');
             if (estilo.getAttribute('href') === '/styles/estiloguapo.css') {
                 estilo.setAttribute('href', '/styles/estiloguapo-ac.css');
                 localStorage.setItem('currentStyle', 'ac');
+                icon.textContent = '☀️';
             } else {
                 estilo.setAttribute('href', '/styles/estiloguapo.css');
                 localStorage.setItem('currentStyle', 'normal');
+                icon.textContent = '🌙';
             }
         }
     </script>
